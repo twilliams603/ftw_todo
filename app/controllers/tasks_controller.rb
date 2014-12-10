@@ -1,7 +1,11 @@
 class TasksController < ApplicationController
   # GET /tasks
   def index
-    @tasks = Task.all
+  	if params[:show_completed] == "1"
+	    @tasks = Task.all
+	else
+		@tasks = Task.where("completed = ?", false)
+	end
   end
 
   # GET /tasks/1
