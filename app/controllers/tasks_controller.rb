@@ -1,7 +1,14 @@
 class TasksController < ApplicationController
   # GET /tasks
   def index
-  	if params[:show_completed] == "1"
+  	if not session[:data]
+      session[:data] = []
+    end
+
+  	if params[:show_completed]
+		session[:data].push params[:show_completed]
+	end
+  	if session[:data].last == "1"
 	    @tasks = Task.all
 	else
 		@tasks = Task.where("completed = ?", false)
@@ -49,24 +56,34 @@ class TasksController < ApplicationController
     redirect_to tasks_path
   end
 
- def task_params
+  def task_params
     params.require(:task).permit(:name, :notes, :due_date, :completed)
   end
 
-def complete
+  def complete
     @task = Task.find(params[:id])
     @task.completed = true
     @task.save
     redirect_to tasks_path
+  end
 
-end
-
-def reset
+  def reset
 	@task = Task.find(params[:id])
 	@task.completed = false
 	@task.save
     redirect_to tasks_path
+  end
+
+
+  def foo
+	if not session[:data]
+  		session[:data] = []
+	end
+
+	if params[:remember]
+  		session[:data].push params[:remember]
+	end
+  end
 
 end
 
-end

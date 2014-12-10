@@ -10,20 +10,7 @@
   </ul>
 <% end %>
 
-<%= form_for(@task) do |t| %>
-
-  <%= t.label      :name %>
-  <%= t.text_field :name %>
-
-  <%= t.label      :notes %>
-  <%= t.text_field :notes %>
-
-  <%= t.label      :due_date %>
-  <%= t.date_select :due_date %>
-
-  <%= t.submit :submit %>
-
-<% end %>
+<%= render 'form' %>
 
 <hr />
 
