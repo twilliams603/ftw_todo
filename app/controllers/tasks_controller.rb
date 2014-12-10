@@ -53,4 +53,20 @@ class TasksController < ApplicationController
     params.require(:task).permit(:name, :notes, :due_date, :completed)
   end
 
+def complete
+    @task = Task.find(params[:id])
+    @task.completed = true
+    @task.save
+    redirect_to tasks_path
+
+end
+
+def reset
+	@task = Task.find(params[:id])
+	@task.completed = false
+	@task.save
+    redirect_to tasks_path
+
+end
+
 end
