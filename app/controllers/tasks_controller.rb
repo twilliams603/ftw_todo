@@ -17,6 +17,7 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
 
     if @task.save
+    	#successful save
       redirect_to @task
     else
       render "new"
@@ -42,6 +43,10 @@ class TasksController < ApplicationController
     @task.destroy
 
     redirect_to tasks_path
+  end
+
+ def task_params
+    params.require(:task).permit(:name, :notes, :due_date, :completed)
   end
 
 end

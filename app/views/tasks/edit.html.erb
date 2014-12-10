@@ -1,0 +1,38 @@
+
+<h1>Edit Task</h1>
+
+<% if @task.errors.any? %>
+There were some errors!
+<ul>
+  <% @task.errors.full_messages.each do |error| %>
+  <li><%= error %></li>
+  <% end %>
+</ul>
+<% end %>
+
+<%= form_for(@task) do |t| %>
+
+  <%= t.label      :name %>
+  <%= t.text_field :name %>
+
+  <%= t.label      :notes %>
+  <%= t.text_field :notes %>
+
+  <%= t.label      :due_date %>
+  <%= t.text_field :due_date %>
+
+  <%= t.label        :completed %>
+  <%= t.check_box :completed %>
+
+  <%= t.submit :submit %>
+
+<% end %>
+
+<hr />
+
+
+<ul>
+  <li><%= link_to "Back to details", @task %></li>
+  <li><%= link_to "Back to index", tasks_path %></li>
+</ul>
+

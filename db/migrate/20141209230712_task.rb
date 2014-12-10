@@ -7,6 +7,7 @@ class Task < ActiveRecord::Migration
   		t.boolean :completed
 
   		t.timestamps
+  	end
   end
 end
 

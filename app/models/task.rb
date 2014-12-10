@@ -1,13 +1,12 @@
 class Task < ActiveRecord::Base
 
 	validates :name, :due_date, presence: true
-	validates :completed, inclusion: { in: %w(true false),
-		message: "%{value} is not valid."}
-
-	before_save :default_values
+	validates :completed, inclusion: [true, false]
+		
+	after_initialize :default_values
 	def default_values()
-		self.due_date ||= 'Time.now.date'
-		self.completed ||= 'false'
+		self.due_date ||= 'Date.now'
+		self.completed ||= false
 	end
 
 	def complete!()
@@ -34,7 +33,7 @@ class Task < ActiveRecord::Base
   		if self.notes == nil
   			return nil
   		else
-  			return "first 40 characters of notes"
+  			return :notes[0, 39]
   		end
   	end
 

@@ -1,0 +1,30 @@
+
+<h3>Task Details</h3>
+
+<p>
+  <strong>Name:</strong>
+  <%= @task.name %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @task.notes %>
+</p>
+
+<p>
+  <strong>Due date:</strong>
+  <%= @task.due_date %>
+</p>
+
+<p>
+  <strong>Completed:</strong>
+  <%= @task.completed %>
+</p>
+
+<hr />
+
+<ul>
+  <li><%= link_to 'Edit this task', edit_task_path(@task) %></li>
+  <li><%= link_to "Back to index", tasks_path %></li>
+</ul>
+
